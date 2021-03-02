@@ -12,7 +12,7 @@ function findGetParameter(parameterName) { //function used to write a parameter 
 }
 
 let pg = Number(findGetParameter("pg")); //make "pg" mean the current page number
-let maxpg = 9; //maximum number of pages; MUST UPDATE MANUALLY EVERY TIME YOU ADD A NEW PAGE or else it wont display the most recent page
+let maxpg = 5; //maximum number of pages; MUST UPDATE MANUALLY EVERY TIME YOU ADD A NEW PAGE or else it wont display the most recent page
 
 if (pg == 0) { 
 pg = maxpg; //display most recent comic page when the webpage is loaded. if you want to instead have the first page displayed first, change maxpg to 1.
@@ -20,12 +20,16 @@ pg = maxpg; //display most recent comic page when the webpage is loaded. if you 
 
 //VARIABLES YOU CAN TWEAK
 let folder = "comics"; //name of the folder where you keep all the comics
-let image = "comic"; //file name
-let ext = "jpg"; //file extension of your comic pages
-let path = (folder != "" ? folder + "/" : "") + image + "_" + pg + "." + ext; //string a bunch of those variables together to create a path to your current comic page
+let image = "pg"; //what you'll name all your comic pages
+let ext = "png"; //file extension of your comic pages
+let path = (folder != "" ? folder + "/" : "") + image + pg + "." + ext; //string a bunch of those variables together to create a path to your current comic page
 
 //ACTUALLY SHOWING THE COMICS AND NAV ON THE PAGE
-document.write(`<img src="` + path + `"/><br/>`); //display comic page
+if (pg < maxpg) { //check whether comic is on the last page
+  document.write(`<a href="?pg=` + (pg + 1) + `"/><img src="` + path + `"/></a><br/>`); //display comic page and make it so that clicking it will lead you to the next page
+} else {
+  document.write(`<img src="` + path + `"/><br/>`); //display comic page as normal
+}
 
 //NAV
 //FIRST BUTTON
