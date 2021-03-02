@@ -13,3 +13,4 @@
 * archive page and possible automation of it
 * make it so you dont have to manually update maxpg every time you update
 * arrow key controls and A/D controls
+* unique alt text support?
