@@ -11,3 +11,4 @@
 * maybe a top navbar to make it super easy to make custom pages
 * archive page and possible automation of it
 * make it so you dont have to manually update maxpg every time you update
+* make clicking on a page take you to the next one
