@@ -28,7 +28,7 @@ let path = (folder != "" ? folder + "/" : "") + image + pg + "." + ext; //string
 if (pg < maxpg) { //check whether comic is on the last page
   document.write(`<a href="?pg=` + (pg + 1) + `"/><img src="` + path + `"/></a><br/>`); //display comic page and make it so that clicking it will lead you to the next page
 } else {
-  document.write(`<img src="` + path + `"/><br/>`); //display comic page as normal
+  document.write(`<img src="` + path + `"/><br/>`); //display comic page without link
 }
 
 //NAV
@@ -59,10 +59,24 @@ document.write(`Next`);
 
 document.write(` | `);
 
-if (pg < maxpg - 1) {
+//LAST BUTTON
+if (pg < maxpg - 1) { //only make active if not on last page
 document.write(`<a href="?pg=` + maxpg + `"/>Last</a>`);
 } else {
 document.write(`Last`);
 }
 
-console.log(pg);
+//KEYBOARD NAVIGATION
+document.addEventListener("keydown", (e) => {
+  if ((e.key == 'ArrowRight' || e.key.toLowerCase() == 'd') && pg < maxpg) { //USE RIGHT ARROW OR D TO GO TO NEXT PAGE
+    window.location.href = "?pg=" + (pg + 1);
+  } else if ((e.key == "ArrowLeft" || e.key.toLowerCase() == "a") && pg > 1) { //USE LEFT ARROW OR A TO GO TO PREVIOUS PAGE
+    window.location.href = "?pg=" + (pg - 1);
+  } else if (e.key.toLowerCase() == "w") { //USE W TO SCROLL UP
+    window.scrollBy({ top: -30 });
+  } else if (e.key.toLowerCase() == "s") { //USE S TO SCROLL DOWN
+    window.scrollBy({ top: 30 });
+  }
+});
+
+console.log(pg); //debug
