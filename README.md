@@ -7,8 +7,8 @@
 * ALTERNATIVELY alternatively, arrow keys and A/D also navigate through pages (W and S also scroll vertically)
 * choose whether first comic is displayed first or latest comic is displayed first by changing a single value
 * choose file extension, name, directory
+* give each page its own unique alt text
+* support for segmented pages (pages split into two or more separate image files placed vertically), mainly for those migrating from webtoons
 ## NEEDED FEATURES:
-* support for segmented images (two images on one page)
 * maybe a top navbar to make it super easy to make custom pages
 * archive page and possible automation of it
-* unique alt text support?
