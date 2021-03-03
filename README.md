@@ -1,4 +1,4 @@
-# NeoComix
+# NeoComix (pre-alpha)
 
 ## CURRENT FEATURES:
 * all on one html page but every comic page gets its own url by appending domain name with query
