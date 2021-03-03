@@ -64,30 +64,44 @@ function writePageClickable(clickable) {
 //function used to split pages into multiple images if needed, and add alt text
 function writePage() {
   let partExtension = ""; //part extension to add to the url if the image is split into multiple parts
-  let altText; //variable for alt text
-  let page = ""; //variable for writing pages
+  let altText = ""; //variable for alt text
   let path = (folder != "" ? folder + "/" : "") + image + pg + partExtension + "." + ext; //path for your comics made out of variables strung together
-  if (pgAltSplit.length !=0 && pgAltSplit.length >= pg && pgAltSplit[pg-1][0] > 1) { //if the array has an entry for the current page
+  let page = ``;
+
+  if (pgAltSplit.length < pg) { //if the array is blank or not long enough to have an entry for this page
+    //debug
+    console.log("page code to insert - " + page);
+    console.log("alt text to print - " + altText);
+    //
+    page = `<img alt="` + altText + `" title="` + altText + `" src="` + path + `" />`;
+    return page;
+  } else if (pgAltSplit.length >= pg) { //if the array is not blank, and if its at least long enough to have an entry for the current page
 
     altText = pgAltSplit[pg - 1][1]; //set alt text to the text defined in the array
 
+    if (pgAltSplit[pg-1][0] > 1) { //if theres more than one page segment
     for (let i = 1; i < pgAltSplit[pg-1][0]+1; i++) { //for loop to put all the parts of the image on the webpage
       partExtension = imgPart + i.toString();
-      path = (folder != "" ? folder + "/" : "") + image + pg + partExtension + "." + ext; //path for your comics made out of variables strung together
-      page += `<br/><img alt="` + altText + `" title="` + altText + `" src="` + path + `" />`;
+      path = (folder != "" ? folder + "/" : "") + image + pg + partExtension + "." + ext; //reinit path (there has to be a less dumb way to do this)
+      if (i > 1) {page += `<br/>`} //add line break
+      page += `<img alt="` + altText + `" title="` + altText + `" src="` + path + `" />`; //add page segment
+      }
+    } else {
+      page = `<img alt="` + altText + `" title="` + altText + `" src="` + path + `" />`;
     }
-  } else {
-    altText = "";
-    page = `<img alt="` + altText + `" title="` + altText + `" src="` + path + `" />`;
-    partExtension = "";
+    //debug
+    console.log("page code to insert - " + page);
+    console.log("alt text to print - " + altText);
+    //
+    return page;
   }
-  console.log(page); //debug
-  return page;
 }
 
 //debug
-console.log("current page - " + pg)
-console.log("number of page segments - " + pgAltSplit[pg-1][0])
+console.log("array blank/not long enough? " + (pgAltSplit.length < pg));
+console.log("array length - " + pgAltSplit.length);
+console.log("current page - " + pg);
+console.log("number of page segments - " + pgAltSplit[pg-1][0]);
 console.log("alt text - " + `"` + pgAltSplit[pg - 1][1] + `"`);
 
 //NAV
