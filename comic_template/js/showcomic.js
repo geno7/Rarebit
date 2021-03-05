@@ -31,16 +31,16 @@ const ext = "png"; //file extension of your comic pages
 const navText = ["First","Previous","Next","Last"]; //alt text for your nav images, or just the text that shows up if you're not using images
 const navFolder = "img/comicnav"; //directory where nav images are stored
 const navExt = "png" //file extension of nav images
-const navScrollTo = "#show-comic"; //id of the div you want the page to automatically scroll to when you click to the next comic. will turn off if you delete all text between quotation marks
+const navScrollTo = "#show-comic"; //id of the div you want the page to automatically scroll to when you click to the next comic. will turn off if you delete text between quotation marks
 
 if (pg == 0) {pg = maxpg;} //display MOST RECENT COMIC when the webpage is loaded. if you want to instead have the FIRST COMIC displayed first, change maxpg to 1.
 
 //ACTUALLY SHOWING THE COMICS AND NAV ON THE PAGE
-writeNav(); //show navigation at the top of the comic
+writeNav(false); //show navigation at the top of the comic. to toggle either images or text for nav, set this to true or false.
 
 writePageClickable(true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
 
-writeNav(); //show navigation at the bottom of the comic
+writeNav(true); //show navigation at the bottom of the comic. same as above.
 
 keyNav(); //enables navigation through the comic with the arrow keys and WSAD. delete or comment out (add // at the beginning) to disable.
 
@@ -115,40 +115,58 @@ console.log("current page - " + pg);
 console.log("number of page segments - " + pgAltSplit[pg-1][0]);
 console.log("alt text - " + `"` + pgAltSplit[pg - 1][1] + `"`);
 
-function writeNav(text) { //this is a function that writes both the top and bottom nav buttons
+console.log("nav text - " + navText);
+console.log("nav image file extension - " + navExt);
+
+function imgOrText(setImg,navTextSet) { //function that writes the indicated nav button as either an image or text
+
+  if (setImg) { //if its an image
+    return `<img src="` + navFolder + `/nav_` + navText[navTextSet].toLowerCase() + `.` + navExt + `" alt="` + navText[navTextSet] + `" />`;
+  } else {
+    return navText[navTextSet];
+  }
+}
+
+function writeNav(imageToggle) { //this is a function that writes both the top and bottom nav buttons
+
+  document.write(`<div class = comicnav>`) //opening div tag, give nav a class so it can be easily styled.
+
   //FIRST BUTTON
   if (pg > 1) { //wait until page 2 to make button active
-  document.write(`<a href="?pg=` + 1 + navScrollTo + `"/>First</a>`);
+  document.write(`<a href="?pg=` + 1 + navScrollTo + `"/>` + imgOrText(imageToggle,0) + `</a>`);
   } else {
-  document.write(`First`);
+  if (!imageToggle) {document.write(imgOrText(imageToggle,0))};
   }
 
-  document.write(` | `); //divider
+  if (!imageToggle) {document.write(` | `);} //divider
 
   //PREV BUTTON
   if (pg > 1) { //wait until page 2 to make button active
-  document.write(`<a href="?pg=` + (pg - 1) + navScrollTo + `"/>Prev</a>`);
+  document.write(`<a href="?pg=` + (pg - 1) + navScrollTo + `"/>` + imgOrText(imageToggle,1) + `</a>`);
   } else {
-  document.write(`Prev`);
+  if (!imageToggle) {document.write(imgOrText(imageToggle,1))};
   }
 
-  document.write(` | `); //divider
+  if (!imageToggle) {document.write(` | `);} //divider
 
   //NEXT BUTTON
   if (pg < maxpg) { //only make active if not on the last page
-    document.write(`<a href="?pg=` + (pg + 1) + navScrollTo + `"/>Next</a>`);
+    document.write(`<a href="?pg=` + (pg + 1) + navScrollTo + `"/>` + imgOrText(imageToggle,2) + `</a>`);
   } else {
-  document.write(`Next`);
+  if (!imageToggle) {document.write(imgOrText(imageToggle,2))};
   }
 
-  document.write(` | `); //divider
+  if (!imageToggle) {document.write(` | `);} //divider
 
   //LAST BUTTON
   if (pg < maxpg) { //only make active if not on last page
-  document.write(`<a href="?pg=` + maxpg + navScrollTo + `"/>Last</a> <br />`);
+  document.write(`<a href="?pg=` + maxpg + navScrollTo + `"/>` + imgOrText(imageToggle,3) + `</a> <br />`);
   } else {
-  document.write(`Last <br />`); //note that line breaks are added after each document.write, mainly to correctly place the top nav
+  if (!imageToggle) {document.write(imgOrText(imageToggle,3))};
+  document.write(`<br/>`) //note that line breaks are added after each document.write here, mainly to correctly place the top nav
   }
+
+  document.write(`</div>`) //closing div tag
 }
 
 //KEYBOARD NAVIGATION

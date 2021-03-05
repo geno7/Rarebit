@@ -17,3 +17,9 @@ body {
 img {
   max-width: 100%;
 }
+
+/* style nav button images */
+.comicnav img {
+  max-width: 80;
+  padding-right: 10px;
+}
