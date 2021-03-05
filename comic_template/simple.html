@@ -13,8 +13,10 @@
     </div>
     <!-- make sure that if you want to turn on automatically scrolling to the top of the comic when you load a new page, keep the id of this div and the variable "navScrollTo" in showcomic.js the same-->
     <div id="show-comic"> 
+      <!-- link to the settings script. rly important to have this called before comic_show and comic_archive, contains crucial variables -->
+      <script src="js/comic_settings.js"></script>
       <!-- link to the script that controls the displaying of your comic, as well as the navigation. -->
-      <script src="js/showcomic.js"></script>
+      <script src="js/comic_show.js"></script>
     </div>
   </div>
   </body>
