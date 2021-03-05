@@ -1,4 +1,4 @@
-//showcomic.js, by Dannarchy & geno7
+//showcomic.js was created by geno7, with much needed assistance from Dannarchy
 
 let pg = Number(findGetParameter("pg")); //make "pg" mean the current page number (this line doesnt work unless I put it here, if you're inexperienced with js dont worry about it)
 
@@ -10,17 +10,28 @@ let pg = Number(findGetParameter("pg")); //make "pg" mean the current page numbe
 const maxpg = 5; //the current number of pages your comic has in total. this DOESNT necessarily mean number of IMAGE FILES as it doesn't count pages split into multiple files. 
 //MUST UPDATE NUMBER MANUALLY EVERY TIME YOU ADD A NEW PAGE or else it wont display the most recent page
 
+//this is what controls how many image files each comic page is split into, as well as what you want the alt text (text that appears upon mouseover) of each page to be.
+//for those uninterested in alt text or image subdivision, DELETE everything between the first opening and closing brackets (so it says pgAltSplit = [];)
 const pgAltSplit = [
-  [1, "Here's some Alt Text!"],
-  [2, "Here's some more alt text"],
-  [1, "Here's a third helping of alt text"],
+  [1, "Here's some Alt Text!"], //first page
+  [2, "Here's some more alt text"], //second page
+  [1, "Here's a third helping of alt text"], //third page, and so on
 ];
+//if you are interested though, basically add the following onto a new line BEFORE the final closing bracket for every comic you add:
+//[number of images, "alt text"],
+//and edit accordingly
 
-//SETTINGS
-const folder = "comics"; //name of the folder where you keep all the comics
+// COMIC PAGE SETTINGS
+const folder = "img/comics"; //name of the folder where you keep all the comics
 const image = "pg"; //what you'll name all your comic pages
-const imgPart = "_" //special character you put after the page number to subdivide pages into multiple image files (ie pg2_1, pg2_2, etc)
+const imgPart = "_" //special character(s) you put after the page number to subdivide pages into multiple image files (ie pg2_1, pg2_2, etc)
 const ext = "png"; //file extension of your comic pages
+
+//NAVIGATION SETTINGS
+const navText = ["First","Previous","Next","Last"]; //alt text for your nav images, or just the text that shows up if you're not using images
+const navFolder = "img/comicnav"; //directory where nav images are stored
+const navExt = "png" //file extension of nav images
+const navScrollTo = "#show-comic"; //id of the div you want the page to automatically scroll to when you click to the next comic. will turn off if you delete all text between quotation marks
 
 if (pg == 0) {pg = maxpg;} //display MOST RECENT COMIC when the webpage is loaded. if you want to instead have the FIRST COMIC displayed first, change maxpg to 1.
 
@@ -54,7 +65,7 @@ function writePageClickable(clickable) {
   } else if (pg < maxpg) {
     //check whether comic is on the last page
     document.write(
-      `<a href="?pg=` + (pg + 1) + `"/>` + writePage() + `</a><br/>`
+      `<a href="?pg=` + (pg + 1) + navScrollTo + `"/>` + writePage() + `</a><br/>`
     ); //display comic page and make it so that clicking it will lead you to the next page
   } else {
     document.write(writePage() + `<br/>`); //display comic page without link
@@ -104,11 +115,10 @@ console.log("current page - " + pg);
 console.log("number of page segments - " + pgAltSplit[pg-1][0]);
 console.log("alt text - " + `"` + pgAltSplit[pg - 1][1] + `"`);
 
-//NAV
-function writeNav() { //this is a function that writes both the top and bottom nav buttons
+function writeNav(text) { //this is a function that writes both the top and bottom nav buttons
   //FIRST BUTTON
   if (pg > 1) { //wait until page 2 to make button active
-  document.write(`<a href="?pg=` + 1 + `"/>First</a>`);
+  document.write(`<a href="?pg=` + 1 + navScrollTo + `"/>First</a>`);
   } else {
   document.write(`First`);
   }
@@ -117,7 +127,7 @@ function writeNav() { //this is a function that writes both the top and bottom n
 
   //PREV BUTTON
   if (pg > 1) { //wait until page 2 to make button active
-  document.write(`<a href="?pg=` + (pg - 1) + `"/>Prev</a>`);
+  document.write(`<a href="?pg=` + (pg - 1) + navScrollTo + `"/>Prev</a>`);
   } else {
   document.write(`Prev`);
   }
@@ -126,7 +136,7 @@ function writeNav() { //this is a function that writes both the top and bottom n
 
   //NEXT BUTTON
   if (pg < maxpg) { //only make active if not on the last page
-    document.write(`<a href="?pg=` + (pg + 1) + `"/>Next</a>`);
+    document.write(`<a href="?pg=` + (pg + 1) + navScrollTo + `"/>Next</a>`);
   } else {
   document.write(`Next`);
   }
@@ -135,7 +145,7 @@ function writeNav() { //this is a function that writes both the top and bottom n
 
   //LAST BUTTON
   if (pg < maxpg) { //only make active if not on last page
-  document.write(`<a href="?pg=` + maxpg + `"/>Last</a> <br />`);
+  document.write(`<a href="?pg=` + maxpg + navScrollTo + `"/>Last</a> <br />`);
   } else {
   document.write(`Last <br />`); //note that line breaks are added after each document.write, mainly to correctly place the top nav
   }
@@ -145,9 +155,9 @@ function writeNav() { //this is a function that writes both the top and bottom n
 function keyNav() {
   document.addEventListener("keydown", (e) => {
   if ((e.key == 'ArrowRight' || e.key.toLowerCase() == 'd') && pg < maxpg) { //right arrow or D goes to next page
-    window.location.href = "?pg=" + (pg + 1);
+    window.location.href = "?pg=" + (pg + 1) + navScrollTo;
   } else if ((e.key == "ArrowLeft" || e.key.toLowerCase() == "a") && pg > 1) { //left arrow or A goes to previous page
-    window.location.href = "?pg=" + (pg - 1);
+    window.location.href = "?pg=" + (pg - 1) + navScrollTo;
   } else if (e.key.toLowerCase() == "w") { //W scrolls up
     window.scrollBy({ top: -30 });
   } else if (e.key.toLowerCase() == "s") { //S scrolls down
