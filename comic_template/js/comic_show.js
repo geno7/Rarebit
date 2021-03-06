@@ -1,13 +1,6 @@
 //comic_show.js was created by geno7, with much needed assistance from Dannarchy
 
-//ACTUALLY SHOWING THE COMICS AND NAV ON THE PAGE
-writeNav(true); //show navigation at the top of the comic. to toggle either images or text for nav, set this to true or false.
-
-writePageClickable(true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
-
-writeNav(true); //show navigation at the bottom of the comic. same as above.
-
-keyNav(); //enables navigation through the comic with the arrow keys and WSAD. delete or comment out (add // at the beginning) to disable.
+//this is the script that actually displays the comics, nav and comic title on the page. 
 
 // below this point is more under-the-hood type stuff that we only encourage messing with if you're more familiar with js, 
 // but it's still commented as extensively as possible anyway just in case
@@ -26,6 +19,17 @@ function writePageClickable(clickable) {
   }
 }
 
+function writePageTitle(toggleNum,char) { //display title of current page
+  if (toggleNum) { //toggle whether you want to display the page number
+    return document.write(pgData[pg-1].pgNum + char + pgData[pg-1].title); //char denotes a separating character between the number and the title
+  };
+  return document.write(pgData[pg-1].title);
+}
+
+function writeAuthorNotes() { //display author notes
+  return document.write(pgData[pg-1].authorNotes);
+}
+
 //function used to split pages into multiple images if needed, and add alt text
 function writePage() {
   let partExtension = ""; //part extension to add to the url if the image is split into multiple parts
@@ -42,10 +46,10 @@ function writePage() {
     return page;
   } else if (pgData.length >= pg) { //if the array is not blank, and if its at least long enough to have an entry for the current page
 
-    altText = pgData[pg - 1][1]; //set alt text to the text defined in the array
+    altText = pgData[pg - 1].altText; //set alt text to the text defined in the array
 
-    if (pgData[pg-1][0] > 1) { //if theres more than one page segment
-    for (let i = 1; i < pgData[pg-1][0]+1; i++) { //for loop to put all the parts of the image on the webpage
+    if (pgData[pg-1].imageFiles > 1) { //if theres more than one page segment
+    for (let i = 1; i < pgData[pg-1].imageFiles+1; i++) { //for loop to put all the parts of the image on the webpage
       partExtension = imgPart + i.toString();
       path = (folder != "" ? folder + "/" : "") + image + pg + partExtension + "." + ext; //reinit path (there has to be a less dumb way to do this)
       if (i > 1) {page += `<br/>`} //add line break
@@ -66,8 +70,8 @@ function writePage() {
 console.log("array blank/not long enough? " + (pgData.length < pg));
 console.log("array length - " + pgData.length);
 console.log("current page - " + pg);
-console.log("number of page segments - " + pgData[pg-1][0]);
-console.log("alt text - " + `"` + pgData[pg - 1][1] + `"`);
+console.log("number of page segments - " + pgData[pg-1].imageFiles);
+console.log("alt text - " + `"` + pgData[pg - 1].altText + `"`);
 
 console.log("nav text - " + navText);
 console.log("nav image file extension - " + navExt);
@@ -83,7 +87,7 @@ function imgOrText(setImg,navTextSet) { //function that writes the indicated nav
 
 function writeNav(imageToggle) { //this is a function that writes both the top and bottom nav buttons
 
-  document.write(`<div class = comicnav>`) //opening div tag, give nav a class so it can be easily styled.
+  document.write(`<div class = comicNav>`) //opening div tag, give nav a class so it can be easily styled.
 
   //FIRST BUTTON
   if (pg > 1) { //wait until page 2 to make button active
