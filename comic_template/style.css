@@ -7,7 +7,7 @@ body, div, main, section, article {
 }
 
 body {
-  background-image: url(chalk.jpg); 
+  background-color: #8DA9C4; 
 }
 
 .clear {
@@ -22,4 +22,10 @@ img {
 .comicnav img {
   max-width: 80;
   padding-right: 30px;
+}
+
+/* style table in which archive is displayed */
+.archiveTable {
+  margin-left: auto;
+  margin-right: auto;
 }

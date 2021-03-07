@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <title>Web Comic | Archive</title>
+
+    <!-- link to the settings script. rly important to have this called before comic_show and comic_archive, contains crucial variables -->
+    <script src="js/comic_settings.js"></script>
+    <!-- link to the script that controls archiving the comic -->
+    <script src="js/comic_archive.js"></script>
+</head>
+<body>
+    <div align="center">
+        <h1>Archive</h1>
+        <script>
+        indexPage = "example.html" //set which html page your comics are on, supremely important. archive system will break otherwise
+        </script>
+
+        <div id="chrono">
+            <h2>Chronological Order</h2>
+            <script>
+            writeArchive(
+                "chrono", //name of the div inside which the function is being called
+                1, //earliest page to list
+                maxpg, //latest page to list. setting to maxpg will make it automatically update with the latest page
+                -1 //if set to 0, list is displayed "latest first". if set to -1, list is displayed chronologically
+                )
+            </script>
+        </div>
+
+        <div id="lastfirst">
+            <h2>"Latest First" Order</h2>
+            <script>writeArchive("lastfirst",1,maxpg,0)</script>
+        </div>
+
+        <div id="chapter1">
+            <h2>Chapter 1</h2>
+            <script>
+            writeArchive("chapter1",1,3,-1) //writeArchive is for listing a RANGE of pages, take advantage of this by using headers to divide them into chapters or by month
+            </script>
+        </div>
+
+        <div id="chapter2">
+            <h2>Chapter 2</h2>
+            <script>writeArchive("chapter2",4,5,-1)</script>
+        </div>
+    </div>
+</body>
+</html>

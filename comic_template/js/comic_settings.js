@@ -31,14 +31,17 @@ if (pg == 0) {pg = maxpg;} //display MOST RECENT COMIC when the webpage is loade
     {
         pgNum: ,
         title: ,
+        date: ,
         altText: ,
-        imageFiles:
+        imageFiles: ,
+        authorNotes:
     },
 */
 const pgData = [
     {
         pgNum: 1, //what page number it is
         title: "The First Page Title", //the title of the page (leaving this blank will default it to "Page X")
+        date: "March 16, 2021", //the date on which the page was posted (mainly for the archive)
         altText: "Here's some alt text!", //the alt text (mouse over text) for this particular comic. put nothing inbetween the quotes for no alt text
         imageFiles: 1, //how many image files this page is split into
         authorNotes: `
@@ -49,6 +52,7 @@ const pgData = [
     {
         pgNum: 2,
         title: "The Second Page Title",
+        date: "March 17, 2021",
         altText: "Here's some more alt text!",
         imageFiles: 2,
         authorNotes: `
@@ -59,6 +63,7 @@ const pgData = [
     {
         pgNum: 3,
         title: "The Third Page Title",
+        date: "March 18, 2021",
         altText: "Here's even more alt text!",
         imageFiles: 1,
         authorNotes: `
