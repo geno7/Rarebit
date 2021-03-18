@@ -1,0 +1,1 @@
+{ "startPath": "src/index.html" }
