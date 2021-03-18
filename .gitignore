@@ -1,4 +1,4 @@
 /node_modules
-package-lock.json
-package.json
-img/comicnav/comicnav.clip
+# package-lock.json
+# package.json
+src/img/comicnav/comicnav.clip

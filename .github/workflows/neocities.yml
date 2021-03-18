@@ -4,7 +4,7 @@ name: Deploy to neocities
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -28,4 +28,4 @@ jobs:
       with:
         api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
         cleanup: false
-        dist_dir: src
+        dist_dir: public
