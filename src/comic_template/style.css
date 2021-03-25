@@ -1,31 +1,54 @@
 /* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
-   HTML content. To learn how to do something, just try searching Google for questions like
+  HTML content. To learn how to do something, just try searching Google for questions like
    "how to change link color." */
+
 
 body, div, main, section, article {
   box-sizing: border-box; 
 }
 
 body {
-  background-color: #8DA9C4; 
+  background-color: #DA5437; 
 }
 
 .clear {
  clear: both; 
 }
 
-img {
-  max-width: 100%;
+/* fonts & text colors*/
+#showComic, header {
+  font-family: 'Cherry Cream Soda', cursive;
+}
+.archivePage {
+  font-family: 'Cherry Cream Soda', cursive;
 }
 
+/* link colors */
+a {
+      color: #ffffff;
+    }
+
+a:hover {
+      color: #000000;
+    }
+
+
+
 /* style nav button images */
-.comicnav img {
-  max-width: 80;
+.comicNav img {
+  max-width: 90;
   padding-right: 30px;
 }
 
+/* style comic page image */
+.comicPage img {
+  max-width: 900;
+}
+
+/* ARCHIVE PAGE */
 /* style table in which archive is displayed */
 .archiveTable {
   margin-left: auto;
   margin-right: auto;
 }
+

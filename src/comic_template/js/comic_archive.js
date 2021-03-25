@@ -1,5 +1,7 @@
 //comic_archive.js was created by geno7
 
+//again, this is stuff you don't really need to pay attention to if you're not 
+
 function writeArchive(divId,min,max,reverseOrder) {
     //create a table to put the archive data
     let archiveTable = document.createElement("TABLE");

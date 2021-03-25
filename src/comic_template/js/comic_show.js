@@ -8,14 +8,14 @@
 //SHOW COMIC PAGE, with clickable link
 function writePageClickable(clickable) {
   if (!clickable) {
-    document.write(writePage() + `<br/>`); //display comic page without link
+    document.write(`<div class="comicPage">${writePage()}</div>`); //display comic page without link
   } else if (pg < maxpg) {
     //check whether comic is on the last page
     document.write(
-      `<a href="?pg=` + (pg + 1) + navScrollTo + `"/>` + writePage() + `</a><br/>`
+      `<div class="comicPage"><a href="?pg=${(pg + 1)}${navScrollTo}"/>${writePage()}</a></div>`
     ); //display comic page and make it so that clicking it will lead you to the next page
   } else {
-    document.write(writePage() + `<br/>`); //display comic page without link
+    document.write(`<div class="comicPage">${writePage()}</div>`); //display comic page without link
   }
 }
 
@@ -87,7 +87,7 @@ function imgOrText(setImg,navTextSet) { //function that writes the indicated nav
 
 function writeNav(imageToggle) { //this is a function that writes both the top and bottom nav buttons
 
-  document.write(`<div class = comicNav>`) //opening div tag, give nav a class so it can be easily styled.
+  document.write(`<div class=comicNav>`) //opening div tag, give nav a class so it can be easily styled.
 
   //FIRST BUTTON
   if (pg > 1) { //wait until page 2 to make button active
@@ -118,10 +118,9 @@ function writeNav(imageToggle) { //this is a function that writes both the top a
 
   //LAST BUTTON
   if (pg < maxpg) { //only make active if not on last page
-  document.write(`<a href="?pg=` + maxpg + navScrollTo + `"/>` + imgOrText(imageToggle,3) + `</a> <br />`);
+  document.write(`<a href="?pg=` + maxpg + navScrollTo + `"/>` + imgOrText(imageToggle,3) + `</a>`);
   } else {
   if (!imageToggle) {document.write(imgOrText(imageToggle,3))};
-  document.write(`<br/>`) //note that line breaks are added after each document.write here, mainly to correctly place the top nav
   }
 
   document.write(`</div>`) //closing div tag
