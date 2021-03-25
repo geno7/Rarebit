@@ -46,7 +46,9 @@ a:hover {
 
 /* style author notes */
 #authorNotes {
+  background-color:#ffffff;
   margin: auto;
+  padding: 3px;
   max-width: 900;
 }
 
