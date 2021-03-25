@@ -5,15 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet" type="text/css" media="all">
-    <title>Web Comic | Archive</title>
+    <title>WebComic | Archive</title>
 
     <!-- link to the settings script. rly important to have this called before comic_show and comic_archive, contains crucial variables -->
     <script src="js/comic_settings.js"></script>
     <!-- link to the script that controls archiving the comic -->
     <script src="js/comic_archive.js"></script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Cherry Cream Soda -->
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div align="center">
+    <div class="archivePage" align="center">
+
+        <!-- header that has the logo image and top page navigation -->
+        <script src="js/comic_header.js"></script>
+        
         <h1>Archive</h1>
         <script>
         indexPage = "example.html" //set which html page your comics are on, supremely important. archive system will break otherwise
@@ -37,15 +46,26 @@
         </div>
 
         <div id="chapter1">
+            <h2>Or, divide it into chapters/arcs</h2>
             <h2>Chapter 1</h2>
             <script>
-            writeArchive("chapter1",1,3,-1) //writeArchive is for listing a RANGE of pages, take advantage of this by using headers to divide them into chapters or by month
+            writeArchive("chapter1",1,5,-1) //writeArchive is for listing a RANGE of pages, take advantage of this by using headers to divide them into chapters or by month
             </script>
         </div>
 
         <div id="chapter2">
             <h2>Chapter 2</h2>
-            <script>writeArchive("chapter2",4,5,-1)</script>
+            <script>writeArchive("chapter2",6,9,-1)</script>
+        </div>
+
+        <div id="chapter3">
+            <h2>Chapter 3</h2>
+            <script>writeArchive("chapter3",9,12,-1)</script>
+        </div>
+
+        <div id="chapter4">
+            <h2>Chapter 4</h2>
+            <script>writeArchive("chapter4",13,15,-1)</script>
         </div>
     </div>
 </body>
