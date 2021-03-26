@@ -7,8 +7,14 @@ body, div, main, section, article {
   box-sizing: border-box; 
 }
 
+/* universal background color */
 body {
   background-color: #DA5437; 
+}
+
+header img {
+  width: 400px;
+  max-width: 100%;
 }
 
 .clear {
@@ -32,16 +38,39 @@ a:hover {
       color: #000000;
     }
 
+/* HEADER */
+header #nav {
+  background-color: #ffffff;
+  font-size: 20px;
+}
+
+header #nav a {
+  color: #000000;
+}
+
+header #nav a:hover {
+  color: #DA5437;
+}
+
 /* HOMEPAGE */
+
 /* style nav button images */
+.comicNav {
+  display:flex;
+  flex-wrap:nowrap;
+  align-items: center;
+  justify-content: center;
+}
 .comicNav img {
-  max-width: 90;
+  width: 80px;
+  max-width: 100%;
   padding-right: 30px;
 }
 
 /* style comic page image */
 .comicPage img {
-  max-width: 900;
+  width: 900px;
+  max-width: 100%;
 }
 
 /* style author notes */
@@ -49,10 +78,12 @@ a:hover {
   background-color:#ffffff;
   margin: auto;
   padding: 3px;
-  max-width: 900;
+  padding-top: 0px;
+  max-width: 900px;
 }
 
 /* ARCHIVE PAGE */
+
 /* style table in which archive is displayed */
 .archiveTable {
   margin-left: auto;
