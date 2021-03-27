@@ -77,6 +77,7 @@ header #nav a:hover {
 /* style author notes */
 #authorNotes {
   background-color:#ffffff;
+  outline: 3px solid #000000;
   margin: auto;
   padding: 3px;
   padding-top: 0px;

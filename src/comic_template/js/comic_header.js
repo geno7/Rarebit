@@ -7,6 +7,7 @@ document.write(`
         <div id="nav">
             <a href="home.html">HOME</a> |
             <a href="archive.html">ARCHIVE</a> |
+            <a href="characters.html">ABOUT</a> |
             <a href="characters.html">CHARACTERS</a>
         </div>
     </header>
