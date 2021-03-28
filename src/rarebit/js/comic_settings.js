@@ -13,7 +13,7 @@ const maxpg = 14; //the current number of pages your comic has in total. this DO
 //MUST UPDATE NUMBER MANUALLY EVERY TIME YOU ADD A NEW PAGE or else it wont display the most recent page
 
 // COMIC PAGE SETTINGS
-const folder = "img/comics"; //name of the folder where you keep all the comics
+const folder = "img/comics"; //directory of the folder where you keep all the comics
 const image = "pg"; //what you'll name all your comic pages
 const imgPart = "_" //special character(s) you put after the page number to subdivide pages into multiple image files (ie pg2_1, pg2_2, etc)
 const ext = "jpg"; //file extension of your comic pages
@@ -37,6 +37,7 @@ if (pg == 0) {pg = maxpg;} //display MOST RECENT COMIC when the webpage is loade
         authorNotes:
     },
 */
+//Note: the formatting is important! The whole thing won't show up if you forget to include the commas or curly braces in the right place.
 const pgData = [
     {
         pgNum: 1, //what page number it is
@@ -82,8 +83,18 @@ const pgData = [
     },
         {
         pgNum: 5,
-        title: "Also if you don't feel like coming up with a title for every page, it defaults to Page [#]",
+        title: "Also if you don't feel like coming up with a title for every page, you don't have to.",
         date: "March 20, 2021",
+        altText: "Here's even more alt text!",
+        imageFiles: 1,
+        authorNotes: `
+            <p>Sed lectus magna, dignissim eu sapien quis, euismod pulvinar diam. In odio massa, auctor blandit dolor id, varius ultricies lacus. Suspendisse sed libero vel leo dictum consectetur. In fringilla elit sit amet placerat varius. Duis vel lacus ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Proin eleifend metus eu ex elementum venenatis. Curabitur sodales, ipsum placerat ornare convallis, sem eros convallis felis, vel efficitur erat ante id diam.</p>
+            `
+    },
+        {
+        pgNum: 6,
+        title: `Unnamed pages won't display a title, and they'll show up as "Page [X]" when listed in the archive`,
+        date: "March 21, 2021",
         altText: "Here's even more alt text!",
         imageFiles: 1,
         authorNotes: `
