@@ -44,7 +44,7 @@ header img {
 
 .subPage {
   width: 900px;
-  max-width: 100%;
+  max-width: 98%;
   background-color: #ffffff;
   outline: 3px solid #000000;
   margin: auto;
@@ -71,11 +71,9 @@ header img {
 }
 
 /* specific to Characters */
-.charProfile { 
-    display:table-cell; 
-    vertical-align:middle; 
-    width:280px; 
-    padding:0 10px; 
+.charTable, .charTable td { 
+  width: 100%;
+  border: 1px solid black;
 }
 
 /* link colors */
@@ -107,14 +105,14 @@ header #nav {
 }
 .comicNav img {
   width: 80px;
-  max-width: 100%;
+  max-width: 98%;
   padding-right: 30px;
 }
 
 /* style comic page image */
 .comicPage img {
   width: 900px;
-  max-width: 100%;
+  max-width: 98%;
 }
 
 /* style author notes */
@@ -124,14 +122,15 @@ header #nav {
   margin: auto;
   padding: 3px;
   padding-top: 0px;
-  max-width: 900px;
+  width: 900px;
+  max-width: 98%;
 }
 
 /* ARCHIVE PAGE */
 
 /* style table in which archive is displayed */
 .archiveTable {
-  max-width: 100%;
+  max-width: 98%;
 }
 
 /* style archive table cells */
