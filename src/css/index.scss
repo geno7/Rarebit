@@ -1,0 +1,22 @@
+//variables
+$color-black: #000000;
+$color-white: #fff;
+
+//FONTS
+//header
+h1, h2, h3 {
+    font-family: 'Limelight', cursive;
+    color: $color-black;
+}
+
+//image fit to screen
+.imgFit {
+    max-width: 98%;
+    width: 900px;
+}
+
+//button
+.btn-outline-dark {
+    border: 3px solid $color-black;
+}
+
