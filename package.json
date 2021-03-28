@@ -4,10 +4,12 @@
   "description": "Basic Webcomics Template using JavaScript, intended for NeoCities",
   "main": "./src/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run lite",
     "lite": "lite-server",
-    "build": ""
+    "scss": "node-sass -o ./src/css/ ./src/css/",
+    "start": "npm run watch:all",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:scss": "onchange \"./src/css/*.scss\" -- npm run scss",
+    "watch:all": "parallelshell \"npm run watch:scss\" \"npm run lite\""
   },
   "repository": {
     "type": "git"
@@ -16,5 +18,11 @@
   "license": "ISC",
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "node-sass": "^4.14.1",
+    "onchange": "^7.1.0",
+    "parallelshell": "^3.0.2"
   }
 }
