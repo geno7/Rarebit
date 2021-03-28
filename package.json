@@ -21,6 +21,7 @@
     "lite-server": "^2.6.1"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
     "node-sass": "^4.14.1",
     "onchange": "^7.1.0",
