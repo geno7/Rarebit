@@ -9,7 +9,7 @@ h3, p, li, .btn {
   font-family: 'Old Standard TT', serif; }
 
 body, .topButtons {
-  background-color: white; }
+  background-color: #ffffff; }
 
 ul {
   list-style-position: inside; }
@@ -24,6 +24,12 @@ li {
 .imgFit2 {
   max-width: 98%;
   width: 400px; }
+
+a {
+  color: #000000; }
+
+a:hover {
+  color: #ff0000; }
 
 .btn-outline-dark {
   border: 3px solid #000000; }

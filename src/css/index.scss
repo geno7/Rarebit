@@ -1,6 +1,7 @@
 //variables
 $color-black: #000000;
-$color-white: rgb(255, 255, 255);
+$color-white: #ffffff;
+$color-highlight: #ff0000;
 
 //FONTS
 //paragraph
@@ -41,6 +42,14 @@ li{
 .imgFit2 {
     max-width: 98%;
     width: 400px;
+}
+
+//links
+a {
+    color:$color-black;
+}
+a:hover {
+    color: $color-highlight;
 }
 
 
