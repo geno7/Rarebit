@@ -13,6 +13,5 @@
 * support for segmented pages (pages split into two or more separate image files placed vertically), mainly for those migrating from webtoons
 * choose file extension, name, directory
 ## NEEDED FEATURES:
-* maybe a top navbar to make it super easy to make custom pages
 * give archive page toggle-able thumbnails
 * make it so when thumbnails are toggled itll search for a custom thumb file, if it cant find one it creates a thumb automatically from the page image
