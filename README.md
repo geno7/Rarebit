@@ -1,4 +1,5 @@
 ![Rarebit](/src/img/rarebitlogo.png)
+[DOWNLOAD LATEST RELEASE (v1.0)](https://rarebit.neocities.org/downloads/rarebit-1.0.zip)
 
 ## CURRENT FEATURES:
 * all on one html page but every comic page gets its own url by appending domain name with query
