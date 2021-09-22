@@ -26,10 +26,10 @@ body, .topButtons {
 
 //style list inside
 ul {
-   list-style-position: inside;
+    list-style-position: inside;
 }
 li{
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 //image fit to screen
@@ -43,6 +43,16 @@ li{
     max-width: 98%;
     width: 400px;
 }
+
+.imgLink {
+  transition: 0.2s;
+}
+
+.imgLink:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.01);
+  transform: scale(1.05);
+} 
 
 //links
 a {

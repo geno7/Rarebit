@@ -1,0 +1,173 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+  HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+
+body, div, main, section, article {
+  box-sizing: border-box; 
+}
+
+/* universal background color */
+body {
+  background-color: #DA5437; 
+}
+
+/* header image */
+header img {
+  width: 500px;
+  max-width: 98%;
+}
+
+/* clearfix hack to prevent image overflow. check out the W3Schools page on it. */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/*FONTS*/
+
+/* header font */
+#showComic, header, h1, h2, h3, h4, h5 {
+  font-family: 'Cherry Cream Soda', cursive;
+}
+
+/* body font */
+.subPage p, footer, #authorNotes, .archiveTable {
+  font-family: 'Open Sans', sans-serif;
+  font-size: large;
+}
+
+/* STYLING FOR SUBPAGES (about, characters, etc) */
+
+/*general*/
+
+.subPage {
+  width: 900px;
+  max-width: 98%;
+  background-color: #ffffff;
+  outline: 3px solid #000000;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 0px 12px 12px;
+}
+
+.subPage:not(.archivePage) {
+  text-align: center;
+}
+
+/* for pictures displayed to the left */
+.leftPic {
+  clear: left;
+  float:right;
+  margin-left:20px;
+}
+
+/* for pictures displayed to the left */
+.rightPic {
+  clear: right;
+  float:left;
+  margin-left:20px;
+}
+
+/* specific to Characters */
+.charTable, .charTable td { 
+  width: 100%;
+}
+
+/* link colors */
+a {
+      color: #000000;
+    }
+
+a:hover {
+      color: #DA5437;
+    }
+
+/* HEADER */
+header #nav {
+  background-color: #ffffff;
+  outline: 3px solid #000000;
+  font-size: 20px;
+  width: 98%;
+  margin: auto;
+}
+
+/* HOMEPAGE */
+
+/* style nav button images */
+.comicNav {
+  display:flex;
+  flex-wrap:nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.comicNav img {
+  width: 80px;
+  max-width: 98%;
+  padding-right: 30px;
+}
+
+/* style comic page image */
+.comicPage img {
+  width: 900px;
+  max-width: 98%;
+}
+
+/* style author notes */
+#authorNotes {
+  background-color:#ffffff;
+  outline: 3px solid #000000;
+  margin: auto;
+  padding: 3px;
+  padding-top: 0px;
+  width: 900px;
+  max-width: 98%;
+}
+
+/* ARCHIVE PAGE */
+
+/* style table in which archive is displayed */
+.archiveTable {
+  max-width: 98%;
+}
+
+/* style archive table cells */
+.archiveTable td {
+  padding: 3px;
+  vertical-align: top;
+  text-align: left;
+}
+
+/* style table cell in which page title is displayed */
+.archiveCellTitle {
+  max-width: 300px;
+}
+
+/* FOOTER */
+footer {
+  color: #421a1a;
+  margin-top: 12px;
+  margin-bottom: 15px;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+}
+
+footer p {
+  margin: auto;
+}
+
+footer a {
+  color: #c8d32b
+}
+
+footer a:hover {
+  color: #868d26
+}
+
+/* take away margins from the edges of the screen */
+html, body {
+  margin: 0;
+}
+

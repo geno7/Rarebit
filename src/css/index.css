@@ -25,6 +25,14 @@ li {
   max-width: 98%;
   width: 400px; }
 
+.imgLink {
+  transition: 0.2s; }
+
+.imgLink:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.01);
+  transform: scale(1.05); }
+
 a {
   color: #000000; }
 

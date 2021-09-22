@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>WebComic</title>
+    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- link to the settings script. rly important to have this called before comic_show and comic_archive, contains crucial variables -->
+    <script src="js/comic_settings.js"></script>
+    <!-- link to the script that controls the displaying of your comic, as well as the navigation. -->
+    <script src="js/comic_show.js"></script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Cherry Cream Soda -->
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  <div align="center">
+    <!-- header that has the logo image and top page navigation -->
+    <script src="js/comic_header.js"></script>
+
+    <!-- make sure that if you want to turn on automatically scrolling to the top of the comic when you load a new page, keep the id of this div and the variable "navScrollTo" in showcomic.js the same-->
+    <div id="showComic">
+
+      <!-- this script writes your page title. true and false toggle whether to display the page number, and the character in quotations is what separates the number from the title -->
+      <h1><script>writePageTitle(true," - ")</script></h1> 
+
+      <!-- script block that displays your comic, as well as nav. -->
+      <script>
+        writeNav(true); //show navigation at the top of the comic. to toggle either images or text for nav, set this to true or false.
+        writePageClickable(true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
+        writeNav(true); //show navigation at the bottom of the comic. same as above.
+        keyNav(); //enables navigation through the comic with the arrow keys and WSAD. delete or comment out (add // at the beginning) to disable.
+      </script>
+      
+    </div>
+  </div>
+  <div id="authorNotes">
+    <h2>Author Notes</h2>
+    <!-- wherever this script is placed, your author notes for the current page will appear-->
+    <script>writeAuthorNotes()</script>
+  </div>
+  </body>
+  <!-- footer that has a link back to neocities, and ideally copyright info and stuff. don't forget to put this on every page-->
+    <script src="js/comic_footer.js"></script>
+</html>
