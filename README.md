@@ -1,7 +1,7 @@
 ![Rarebit](/src/img/rarebitlogo.png)
 # A free, open-source WEBCOMIC TEMPLATE built in HTML and JavaScript
 ## [HOMEPAGE](https://rarebit.neocities.org)
-## [DOWNLOAD LATEST RELEASE (v1.0)](https://rarebit.neocities.org/downloads/rarebit-1.0.zip)
+## [DOWNLOAD LATEST RELEASE (v1.5)](https://rarebit.neocities.org/downloads/rarebit-1.5.zip)
 
 ## CURRENT FEATURES:
 * all on one html page but every comic page gets its own url by appending domain name with query

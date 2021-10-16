@@ -149,12 +149,12 @@ header #nav {
 
 .archiveCellDate {
   text-align: right;
-  min-width: 150px;
+  min-width: 120px;
 }
 
 .archiveCellNum {
   text-align: center;
-  min-width: 50px;
+  min-width: 30px;
 }
 
 /* style the thumbnails on the archive page */

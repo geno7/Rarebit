@@ -2,16 +2,16 @@
 
 //Writing sections of the archive page involves 2 steps:
 //first, use the writeArchive function in this .js file. set the parameters (the stuff inside the parenthesis, comma separated) to toggle options.
-//then, to place that section of the archive on the html page, you'd make a div, and give that div an id name of whatever you've called that section of the archive in the first parameter.
-//if you put anything in that div, the table will get appended after it. i.e. you can put the title of that specific section as a header in that div. 
- 
+//then, to place that section of the archive on the html page, you'd make a div, and give that div a class name of whatever you've called that section of the archive in the first parameter.
+//if you put anything in that div, the list of comics will get appended after it. i.e. you can put the title of that specific section as a header in that div. 
+
 writeArchive(
-    "chrono", //id of the div that you want this section of the archive to appear in. to have it be on your html page, make an empty div with this id.
+    "chrono", //class of the div that you want this section of the archive to appear in. to have it be on your html page, make an empty div with this class.
     1, //earliest page to list
     maxpg, //latest page to list. setting to maxpg will make it automatically update with the latest page
     -1, //if set to 0, list is displayed "latest first". if set to -1, list is displayed chronologically
     true, //if set to true, each comic will have its own thumbnail image next to it. if a comic doesn't have its own thumbnail, it'll be set to the default thumbnail.
-    true, //if set to true, each comic will have a display number
+    true //if set to true, each comic will have a display number
 );
 
 writeArchive("lastfirst", 1, maxpg, 0, true,true);
@@ -26,19 +26,20 @@ writeArchive("chapter4", 13, 15, -1, false,false);
 
 //below this point is stuff you don't really need to pay attention to if you're not super familiar with JS 
 
-function writeArchive(divId, min, max, reverseOrder, useThumbs,useNums) {
+function writeArchive(divClass, min, max, reverseOrder, useThumbs,useNums) {
     //create a table to put the archive data
     let archiveTable = document.createElement("TABLE");
     archiveTable.setAttribute("class", "archiveTable"); //set class to archiveTable for css styling
-    let getDiv = document.getElementById(divId);
+    let getDiv = document.getElementsByClassName(divClass)[0]; //get div class
     getDiv.appendChild(archiveTable);
     //make the table from the currently available comics
     for (i = min; i <= max; i++) {
         let row = archiveTable.insertRow(reverseOrder); //if reverseOrder is set to 0 it'll reverse the order, otherwise it'll display it in regular order
 
         //insert table cells
-        let cellThumb = row.insertCell();
-        let cellNum = row.insertCell();
+        let cellThumb = useThumbs ? row.insertCell() : 0; //only insert thumbs and number rows if useThumbs and useNums are toggled respectively
+        let cellNum = useNums ? row.insertCell() : 0;
+
         let cellTitle = row.insertCell();
         let cellDate = row.insertCell();
 
@@ -64,7 +65,7 @@ function writeArchive(divId, min, max, reverseOrder, useThumbs,useNums) {
                 pgDate = pgData[i - 1].date;
             }
             if (pgData[i - 1].pgNum) {
-                pgNum = pgData[i - 1].pgNum
+                pgNum = pgData[i - 1].pgNum;
             }
         }
 
@@ -77,12 +78,14 @@ function writeArchive(divId, min, max, reverseOrder, useThumbs,useNums) {
             window.location.href = linkToComic;
         });
 
-        if (useThumbs) { //draw thumbnails if you have thumbnails toggled
+        if (useThumbs) {
+            //draw thumbnails if you have thumbnails toggled
             cellThumb.innerHTML = `<img alt="${pgTitle}" title="${pgTitle}" src="${pgThumb}" onerror="javascript:this.src='${pgThumbDefault}'"/>`;
             cellThumb.setAttribute("class", "archiveCellThumb");
         }
 
         if (useNums) {
+            //same for numbers
             cellNum.innerHTML = `<span><strong>${pgNum}</strong></span>`;
             cellNum.setAttribute("class", "archiveCellNum");
         }
@@ -93,7 +96,7 @@ function writeArchive(divId, min, max, reverseOrder, useThumbs,useNums) {
         cellDate.innerHTML = "<span> " + pgDate + " </span>";
         cellDate.setAttribute("class", "archiveCellDate");
         console.log(i + `created row - ${pgTitle} - ${linkToComic}`);
-        
+
         //left align text if not using thumbnails
         cellTitle.className += " leftAlignTableText";
     }
