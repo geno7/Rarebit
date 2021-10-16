@@ -4,13 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
     <title>WebComic | Archive</title>
-
-    <!-- link to the settings script. rly important to have this called before comic_show and comic_archive, contains crucial variables -->
-    <script src="js/comic_settings.js"></script>
-    <!-- link to the script that controls archiving the comic -->
-    <script src="js/comic_archive.js"></script>
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- header that has the logo image and top page navigation -->
-    <script src="js/comic_header.js"></script>
+    <!-- header -->
+    <div class="writeHeader"></div>
 
 
     <div class="archivePage subPage" align="center">
@@ -30,46 +25,39 @@
         </script>
 
         <div id="chrono">
-            <h2><span>2021</span></h2>
-            <script>
-            writeArchive(
-                "chrono", //name of the div inside which the function is being called
-                1, //earliest page to list
-                maxpg, //latest page to list. setting to maxpg will make it automatically update with the latest page
-                -1 //if set to 0, list is displayed "latest first". if set to -1, list is displayed chronologically
-                )
-            </script>
+            <h2>Chronological Order</h2>
         </div>
 
         <div id="lastfirst">
             <h2>"Latest First" Order</h2>
-            <script>writeArchive("lastfirst",1,maxpg,0)</script>
         </div>
 
         <div id="chapter1">
             <h2>Or, divide it into chapters/arcs</h2>
+            <h2>(You can also turn off thumbnails)</h2>
             <h2>Chapter 1</h2>
-            <script>
-            writeArchive("chapter1",1,5,-1) //writeArchive is for listing a RANGE of pages, take advantage of this by using headers to divide them into chapters or by month
-            </script>
         </div>
 
         <div id="chapter2">
             <h2>Chapter 2</h2>
-            <script>writeArchive("chapter2",6,9,-1)</script>
         </div>
 
         <div id="chapter3">
             <h2>Chapter 3</h2>
-            <script>writeArchive("chapter3",9,12,-1)</script>
         </div>
 
         <div id="chapter4">
             <h2>Chapter 4</h2>
-            <script>writeArchive("chapter4",13,15,-1)</script>
         </div>
     </div>
+    
+    <!-- footer-->
+    <div class="writeFooter"></div>
+
+<!-- really important- every js script is called here, be sure to always put them just before the closing body tag, use a defer attribute, and call them in this specific order.-->
+<script src="js/comic_header.js" defer></script>
+<script src="js/comic_settings.js" defer></script>
+<script src="js/comic_archive.js" defer></script>
+<script src="js/comic_footer.js" defer></script>
 </body>
-<!-- footer that has a link back to neocities, and ideally copyright info and stuff. don't forget to put this on every page-->
-<script src="js/comic_footer.js"></script>
 </html>

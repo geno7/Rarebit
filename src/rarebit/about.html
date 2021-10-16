@@ -7,7 +7,7 @@
     <title>Ruth and Dianne are Starting a Band | About</title>
 
     <!-- style -->
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,7 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script src="js/comic_header.js"></script>
+    <!-- header -->
+    <div class="writeHeader"></div>
+
     <div class="subPage clearfix">
         <h1>About</h1>
         <p>This is an example of how to use the <strong>Rarebit template.</strong> It uses a public domain comic strip called <strong>Teena</strong> that ran in newspapers from 1944 to 1963.</p> 
@@ -30,7 +32,12 @@
             <p>Say what you will, but the lady's got range!</p>
         </div>
     </div>
+    
+    <!-- footer -->
+    <div class="writeFooter"></div>
+
+<!-- at the end of this page we only call the header and footer scripts, because we don't need use any functions from the other scripts. -->
+<script src="js/comic_header.js" defer></script>
+<script src="js/comic_footer.js" defer></script>
 </body>
-<!-- footer that has a link back to neocities, and ideally copyright info and stuff. don't forget to put this on every page-->
-    <script src="js/comic_footer.js"></script>
 </html>

@@ -2,32 +2,55 @@
 
 //this is the script that actually displays the comics, nav and comic title on the page. 
 
+//below are what's called some "function calls", each one is responsible for making an element of the page. to get something to actually show up on the page, all you'd need to do is make a div with a class that has the same name as the function call. i.e. writeNav shows comic navigation, to show it on a page youd use <div class="writeNav"></div> wherever you want it to be. You can even put multiple divs with that same class name and it'll display multiple instances of the navigation.
+
+//a couple of the function calls have toggles too.
+
+
+
+writeNav(true); //show navigation for comic pages. to toggle either images or text for nav, set this to true or false.
+
+//debug
+console.log(pg)
+
+writePageTitle(".writePageTitle", true, " - "); //write title of page. true/false
+
+writePageClickable(".writePageClickable",true); //show the current page. to toggle whether pages can be clicked to move to the next one, set this to true or false.
+
+writeAuthorNotes(".writeAuthorNotes");
+
+keyNav(); //enables navigation through the comic with the arrow keys and WSAD. It doesn't need a div with a class name, it automatically works. delete or comment out (add // at the beginning) here to disable.
+
 // below this point is more under-the-hood type stuff that we only encourage messing with if you're more familiar with js, 
 // but it's still commented as extensively as possible anyway just in case
 
 //SHOW COMIC PAGE, with clickable link
-function writePageClickable(clickable) {
-  if (!clickable) {
-    document.write(`<div class="comicPage">${writePage()}</div>`); //display comic page without link
-  } else if (pg < maxpg) {
-    //check whether comic is on the last page
-    document.write(
-      `<div class="comicPage"><a href="?pg=${(pg + 1)}${navScrollTo}"/>${writePage()}</a></div>`
-    ); //display comic page and make it so that clicking it will lead you to the next page
-  } else {
-    document.write(`<div class="comicPage">${writePage()}</div>`); //display comic page without link
+function writePageClickable(div,clickable) {
+    if (!clickable) {
+        document.querySelector(div).innerHTML = `<div class="comicPage">${writePage()}</div>`; //display comic page without link
+    } else if (pg < maxpg) {
+        //check whether comic is on the last page
+        document.querySelector(div).innerHTML = `<div class="comicPage"><a href="?pg=${pg + 1}${navScrollTo}"/>${writePage()}</a></div>`; //display comic page and make it so that clicking it will lead you to the next page
+    } else {
+        document.querySelector(div).innerHTML = `<div class="comicPage">${writePage()}</div>`; //display comic page without link
+    }
+}
+
+function writePageTitle(div,toggleNum, char) {
+  if (pgData.length >= pg) {
+    //display title of current page
+    document.querySelector(div).innerHTML = `<h1>${pgData[pg - 1].title}</h1>`;
+    if (toggleNum) {
+        //toggle whether you want to display the page number
+        document.querySelector(div).innerHTML = `<h1>${pgData[pg - 1].pgNum + char + pgData[pg - 1].title}</h1>`; //char denotes a separating character between the number and the title
+    }
   }
 }
 
-function writePageTitle(toggleNum,char) { //display title of current page
-  if (toggleNum) { //toggle whether you want to display the page number
-    return document.write(pgData[pg-1].pgNum + char + pgData[pg-1].title); //char denotes a separating character between the number and the title
-  };
-  return document.write(pgData[pg-1].title);
-}
-
-function writeAuthorNotes() { //display author notes
-  return document.write(pgData[pg-1].authorNotes);
+function writeAuthorNotes(div) { //display author notes
+  if (pgData.length >= pg) {
+    return document.querySelector(div).innerHTML = `${pgData[pg-1].authorNotes}`
+  }
 }
 
 //function used to split pages into multiple images if needed, and add alt text
@@ -85,45 +108,83 @@ function imgOrText(setImg,navTextSet) { //function that writes the indicated nav
   }
 }
 
-function writeNav(imageToggle) { //this is a function that writes both the top and bottom nav buttons
+function writeNav(imageToggle) {
+    let writeNavDiv = document.querySelectorAll(".writeNav");
+    writeNavDiv.forEach(function(element) {
+      element.innerHTML = `<div class="comicNav">
+        ${firstButton()}
+        ${divider()}
+        ${prevButton()}
+        ${divider()}
+        ${nextButton()}
+        ${divider()}
+        ${lastButton()}
+        </div>
+        `;})
 
-  document.write(`<div class=comicNav>`) //opening div tag, give nav a class so it can be easily styled.
+    function firstButton() {
+        //FIRST BUTTON
+        if (pg > 1) {
+            //wait until page 2 to make button active
+            return `<a href="?pg=` + 1 + navScrollTo + `"/>` + imgOrText(imageToggle, 0) + `</a>`;
+        } else {
+            if (!imageToggle) {
+                return imgOrText(imageToggle, 0);
+            } else {
+                return ``;
+            }
+        }
+    }
 
-  //FIRST BUTTON
-  if (pg > 1) { //wait until page 2 to make button active
-  document.write(`<a href="?pg=` + 1 + navScrollTo + `"/>` + imgOrText(imageToggle,0) + `</a>`);
-  } else {
-  if (!imageToggle) {document.write(imgOrText(imageToggle,0))};
-  }
+    function divider() {
+        //divider
+        if (!imageToggle) {
+            return ` | `;
+        }
+        return ``;
+    }
 
-  if (!imageToggle) {document.write(` | `);} //divider
+    function prevButton() {
+        //PREV BUTTON
+        if (pg > 1) {
+            //wait until page 2 to make button active
+            return `<a href="?pg=` + (pg - 1) + navScrollTo + `"/>` + imgOrText(imageToggle, 1) + `</a>`;
+        } else {
+            if (!imageToggle) {
+                return imgOrText(imageToggle, 1);
+            } else {
+                return ``;
+            }
+        }
+    }
 
-  //PREV BUTTON
-  if (pg > 1) { //wait until page 2 to make button active
-  document.write(`<a href="?pg=` + (pg - 1) + navScrollTo + `"/>` + imgOrText(imageToggle,1) + `</a>`);
-  } else {
-  if (!imageToggle) {document.write(imgOrText(imageToggle,1))};
-  }
+    function nextButton() {
+        //NEXT BUTTON
+        if (pg < maxpg) {
+            //only make active if not on the last page
+            return `<a href="?pg=` + (pg + 1) + navScrollTo + `"/>` + imgOrText(imageToggle, 2) + `</a>`;
+        } else {
+            if (!imageToggle) {
+                return imgOrText(imageToggle, 2);
+            } else {
+                return ``;
+            }
+        }
+    }
 
-  if (!imageToggle) {document.write(` | `);} //divider
-
-  //NEXT BUTTON
-  if (pg < maxpg) { //only make active if not on the last page
-    document.write(`<a href="?pg=` + (pg + 1) + navScrollTo + `"/>` + imgOrText(imageToggle,2) + `</a>`);
-  } else {
-  if (!imageToggle) {document.write(imgOrText(imageToggle,2))};
-  }
-
-  if (!imageToggle) {document.write(` | `);} //divider
-
-  //LAST BUTTON
-  if (pg < maxpg) { //only make active if not on last page
-  document.write(`<a href="?pg=` + maxpg + navScrollTo + `"/>` + imgOrText(imageToggle,3) + `</a>`);
-  } else {
-  if (!imageToggle) {document.write(imgOrText(imageToggle,3))};
-  }
-
-  document.write(`</div>`) //closing div tag
+    function lastButton() {
+        //LAST BUTTON
+        if (pg < maxpg) {
+            //only make active if not on last page
+            return `<a href="?pg=` + maxpg + navScrollTo + `"/>` + imgOrText(imageToggle, 3) + `</a>`;
+        } else {
+            if (!imageToggle) {
+                return imgOrText(imageToggle, 3);
+            } else {
+                return ``;
+            }
+        }
+    }
 }
 
 //KEYBOARD NAVIGATION
