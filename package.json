@@ -1,30 +1,34 @@
 {
-  "name": "neocomix",
-  "version": "1.0.0",
-  "description": "Basic Webcomics Template using JavaScript, intended for NeoCities",
-  "main": "./src/index.html",
-  "scripts": {
-    "lite": "lite-server",
-    "scss": "node-sass -o ./src/css/ ./src/css/",
-    "start": "npm run watch:all",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:scss": "onchange \"./src/css/*.scss\" -- npm run scss",
-    "watch:all": "parallelshell \"npm run watch:scss\" \"npm run lite\"",
-    "build": ""
-  },
-  "repository": {
-    "type": "git"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "lite-server": "^2.6.1"
-  },
-  "dependencies": {
-    "bootstrap": "^4.6.0",
-    "jquery": "^3.6.0",
-    "node-sass": "^4.14.1",
-    "onchange": "^7.1.0",
-    "parallelshell": "^3.0.2"
-  }
+    "name": "rarebit",
+    "version": "1.0.0",
+    "description": "![Rarebit](/src/img/rarebitlogo.png)\r # A free, open-source WEBCOMIC TEMPLATE built in HTML and JavaScript\r ## [HOMEPAGE](https://rarebit.neocities.org)\r ## [DOWNLOAD LATEST RELEASE (v1.5)](https://rarebit.neocities.org/downloads/rarebit-1.5.zip)",
+    "main": "index.js",
+    "scripts": {
+        "lite": "lite-server",
+        "scss": "node-sass -o ./src/css/ ./src/css/",
+        "start": "npm run watch:all",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch:scss": "onchange \"./src/css/*.scss\" -- npm run scss",
+        "watch:all": "parallelshell \"npm run watch:scss\" \"npm run lite\"",
+        "build": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/geno7/Rarebit.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/geno7/Rarebit/issues"
+    },
+    "homepage": "https://github.com/geno7/Rarebit#readme",
+    "devDependencies": {
+        "bootstrap": "^5.2.2",
+        "jquery": "^3.6.1",
+        "lite-server": "^2.6.1",
+        "node-sass": "^8.0.0",
+        "onchange": "^7.1.0",
+        "parallelshell": "^3.0.2"
+    }
 }
